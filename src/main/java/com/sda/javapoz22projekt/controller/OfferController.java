@@ -25,6 +25,7 @@ public class OfferController {
     @GetMapping("/offers")
     public ModelAndView findAll() {
         ModelAndView modelAndView = new ModelAndView("offers");
+        System.out.println("hello world");
         modelAndView.addObject("offers", offerService.findAll());
         return modelAndView;
     }
