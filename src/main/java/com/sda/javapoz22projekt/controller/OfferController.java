@@ -15,10 +15,17 @@ public class OfferController {
         this.offerService = offerService;
     }
 
-    @GetMapping("/offer/{id}")
+    @GetMapping("/offers/{id}")
     public ModelAndView offerById(@PathVariable("id") Long id) {
         ModelAndView modelAndView = new ModelAndView("offer");
         modelAndView.addObject("offer", offerService.getById(id));
+        return modelAndView;
+    }
+
+    @GetMapping("/offers")
+    public ModelAndView findAll() {
+        ModelAndView modelAndView = new ModelAndView("offers");
+        modelAndView.addObject("offers", offerService.findAll());
         return modelAndView;
     }
 }
