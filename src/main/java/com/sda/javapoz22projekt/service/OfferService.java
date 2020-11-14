@@ -4,6 +4,9 @@ import com.sda.javapoz22projekt.model.Offer;
 import com.sda.javapoz22projekt.repository.OfferRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class OfferService {
 
@@ -19,5 +22,11 @@ public class OfferService {
 
     public Iterable<Offer> getAll() {
         return offerRepository.findAll();
+    }
+
+    public List<Offer> findAll() {
+        List<Offer> offers = new ArrayList<>();
+        offerRepository.findAll().forEach(offers::add);
+        return offers;
     }
 }

@@ -1,0 +1,11 @@
+<html>
+<body>
+Hello offer
+
+<ul>
+    <li th:each="offer : ${offers}">
+        <a th:href="'/offers/' + ${offer.id}" th:text="${offer.name}">Offer name</a>
+    </li>
+</ul>
+</body>
+</html>
