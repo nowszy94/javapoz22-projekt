@@ -38,7 +38,7 @@ public class OfferController {
     @GetMapping("/test")
     public ModelAndView dd() {
         ModelAndView modelAndView = new ModelAndView("test");
-        modelAndView.addObject("form", new Blabla());
+        modelAndView.addObject("form", new Blabla(LocalDate.now(), LocalDate.now()));
         return modelAndView;
     }
 
