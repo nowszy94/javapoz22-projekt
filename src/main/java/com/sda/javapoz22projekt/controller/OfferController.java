@@ -9,11 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
 
 @Controller
 public class OfferController {
@@ -54,20 +50,10 @@ public class OfferController {
         private LocalDate dateFrom;
         private LocalDate dateTo;
 
-        public Blabla() {
-            this.dateFrom = LocalDate.now();
-            this.dateTo = LocalDate.now();
+        public Blabla(@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateFrom, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateTo) {
+            this.dateFrom = dateFrom;
+            this.dateTo = dateTo;
         }
 
-        public Blabla(@DateTimeFormat(pattern = "yyyy-MM-dd") Date dateFrom, @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateTo) {
-            this.dateFrom = toLocalDate(dateFrom);
-            this.dateTo = toLocalDate(dateTo);
-        }
-
-        private LocalDate toLocalDate(Date date) {
-            return Instant.ofEpochMilli(date.getTime())
-                    .atZone(ZoneId.systemDefault())
-                    .toLocalDate();
-        }
     }
 }
