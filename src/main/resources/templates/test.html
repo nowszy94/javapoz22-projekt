@@ -1,0 +1,9 @@
+<html>
+<body>
+<form action="/test" method="post" th:object="${form}">
+    <input type="date" th:field="*{dateFrom}">
+    <input type="date" th:field="*{dateTo}">
+    <input type="submit" value="submit">
+</form>
+</body>
+</html>
