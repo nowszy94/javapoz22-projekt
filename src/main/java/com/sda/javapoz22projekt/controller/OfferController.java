@@ -1,10 +1,19 @@
 package com.sda.javapoz22projekt.controller;
 
 import com.sda.javapoz22projekt.service.OfferService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 @Controller
 public class OfferController {
@@ -28,5 +37,37 @@ public class OfferController {
         System.out.println("hello world");
         modelAndView.addObject("offers", offerService.findAll());
         return modelAndView;
+    }
+
+    @GetMapping("/test")
+    public ModelAndView dd() {
+        return new ModelAndView("test");
+    }
+
+    @PostMapping("/test")
+    public void test(@ModelAttribute Blabla blabla) {
+
+        System.out.println("tutaj breakpoint");
+    }
+
+    static class Blabla {
+        private LocalDate dateFrom;
+        private LocalDate dateTo;
+
+        public Blabla() {
+            this.dateFrom = LocalDate.now();
+            this.dateTo = LocalDate.now();
+        }
+
+        public Blabla(@DateTimeFormat(pattern = "yyyy-MM-dd") Date dateFrom, @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateTo) {
+            this.dateFrom = toLocalDate(dateFrom);
+            this.dateTo = toLocalDate(dateTo);
+        }
+
+        private LocalDate toLocalDate(Date date) {
+            return Instant.ofEpochMilli(date.getTime())
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate();
+        }
     }
 }
