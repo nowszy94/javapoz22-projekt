@@ -37,13 +37,18 @@ public class OfferController {
 
     @GetMapping("/test")
     public ModelAndView dd() {
-        return new ModelAndView("test");
+        ModelAndView modelAndView = new ModelAndView("test");
+        modelAndView.addObject("form", new Blabla());
+        return modelAndView;
     }
 
     @PostMapping("/test")
-    public void test(@ModelAttribute Blabla blabla) {
+    public ModelAndView test(@ModelAttribute Blabla blabla) {
 
         System.out.println("tutaj breakpoint");
+        ModelAndView modelAndView = new ModelAndView("test");
+        modelAndView.addObject("form", blabla);
+        return modelAndView;
     }
 
     static class Blabla {
@@ -55,5 +60,12 @@ public class OfferController {
             this.dateTo = dateTo;
         }
 
+        public LocalDate getDateFrom() {
+            return dateFrom;
+        }
+
+        public LocalDate getDateTo() {
+            return dateTo;
+        }
     }
 }
